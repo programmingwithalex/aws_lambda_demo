@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Resources needed to deploy scheduled lambda function.
+Resources:
+  ECRRepository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: my-repo-name-ecr
+      RepositoryPolicyText:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Sid: AllowPushPull
+            Effect: Allow
+            Principal:
+              AWS:
+                - "arn:aws:iam::<account_id>:user/aws-lambda-demo-user"
+            Action:
+              - "ecr:GetDownloadUrlForLayer"
+              - "ecr:BatchGetImage"
+              - "ecr:BatchCheckLayerAvailability"
+              - "ecr:PutImage"
+              - "ecr:InitiateLayerUpload"
+              - "ecr:UploadLayerPart"
+              - "ecr:CompleteLayerUpload"

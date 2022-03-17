@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Resources needed to deploy scheduled lambda function with ECR image.
+Resources:
+  LambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: my-func-name-lambda  # optional
+      Description: A starter AWS Lambda function.
+      Role: arn:aws:iam::<account_id>:role/aws-lambda-role
+      PackageType: Image
+      Code:
+        ImageUri: <account_id>.dkr.ecr.us-east-1.amazonaws.com/aws-lambda-demo-ecr:latest
+      Timeout: 30
+      MemorySize: 128
+      TracingConfig:
+        Mode: Active
+      # VpcConfig:
+      #   SecurityGroupIds:
+      #     - sg-0d1d60471d00b3c5e
+      #   SubnetIds:
+      #     - subnet-04564f21a448f7a97
+      #     - subnet-00553e385bc6a7f1c
+  ScheduledRule:
+    Type: AWS::Events::Rule
+    DependsOn: LambdaFunction
+    Properties:
+      Name: my-func-name-cloudwatch # optional
+      Description: "ScheduledRule"
+      ScheduleExpression: "cron(00 12 ? * MON-FRI *)"
+      State: "ENABLED"
+      Targets:
+        -
+          Arn:
+            Fn::GetAtt:
+              - "LambdaFunction"
+              - "Arn"
+          Id: "TargetFunctionV1"
+  PermissionForEventsToInvokeLambda:
+    Type: AWS::Lambda::Permission
+    DependsOn: LambdaFunction
+    Properties:
+      FunctionName: !Ref "LambdaFunction"
+      Action: "lambda:InvokeFunction"
+      Principal: "events.amazonaws.com"
+      SourceArn:
+        Fn::GetAtt:
+          - "ScheduledRule"
+          - "Arn"

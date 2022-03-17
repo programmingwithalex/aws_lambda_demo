@@ -1,0 +1,29 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchGetImage",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:CompleteLayerUpload",
+                "ecr:DescribeImages",
+                "ecr:DescribeRepositories",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:InitiateLayerUpload",
+                "ecr:ListImages",
+                "ecr:PutImage",
+                "ecr:UploadLayerPart",
+                "ecr:CreateRepository"
+            ],
+            "Resource": "arn:aws:ecr:*:*:repository/*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "ecr:GetAuthorizationToken",
+            "Resource": "*"
+        }
+    ]
+}
