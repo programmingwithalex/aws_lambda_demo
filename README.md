@@ -1,4 +1,4 @@
-# aws-lambda-demo
+# aws_lambda_demo
 
 Copyright (c) 2021, programmingwithalex
 
