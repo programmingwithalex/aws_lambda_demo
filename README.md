@@ -12,7 +12,7 @@ This video will cover end-to-end how to:
 * push the image to AWS manually
 * push the image to AWS with CI/CD using GitHub Actions
 * scheduling the lambda function to run as a recurring cron job
-* building custom AWS CloudFormation to automate creation of lambda function
+* building custom AWS EventBridge to automate creation of lambda function
 * an update to the CI/CD GitHub Action that caches the Docker image on AWS ECR, speeding up run time
 
 ## License
