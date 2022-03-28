@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ECR_IMAGE_TAG: latest
+      AWS_DEFAULT_REGION: us-east-1
 
     steps:
     - name: checkout
@@ -23,7 +24,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+        aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
     - name: Login to Amazon ECR
       id: login-ecr
@@ -42,7 +43,7 @@ jobs:
             --build-arg WEATHER_API_KEY="${{ secrets.WEATHER_API_KEY }}" \
             --build-arg AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID }}" \
             --build-arg AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
-            --build-arg AWS_DEFAULT_REGION="${{ secrets.AWS_DEFAULT_REGION }}" \
+            --build-arg AWS_DEFAULT_REGION="${{ env.AWS_DEFAULT_REGION }}" \
             --build-arg EMAIL_USER="${{ secrets.EMAIL_USER }}" \
             --build-arg EMAIL_PASSWORD="${{ secrets.EMAIL_PASSWORD }}" \
             -t $ECR_REGISTRY/$ECR_REPOSITORY:${{ env.ECR_IMAGE_TAG }} .
@@ -57,4 +58,4 @@ jobs:
         AWS_LAMBDA_FUNC_NAME: aws-lambda-demo-lambda
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        AWS_DEFAULT_REGION: ${{ env.AWS_DEFAULT_REGION }}
