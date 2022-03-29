@@ -13,7 +13,7 @@ Resources:
             Effect: Allow
             Principal:
               AWS:
-                - "arn:aws:iam::<account_id>:user/aws-lambda-demo-user"
+                - "arn:aws:iam::<account_id>:user/<iam_user_name>"
             Action:
               - "ecr:GetDownloadUrlForLayer"
               - "ecr:BatchGetImage"

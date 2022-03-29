@@ -4,27 +4,27 @@ Resources:
   LambdaFunction:
     Type: AWS::Lambda::Function
     Properties:
-      FunctionName: my-func-name-lambda  # optional
+      FunctionName: <lambda_name>  # optional
       Description: A starter AWS Lambda function.
-      Role: arn:aws:iam::<account_id>:role/aws-lambda-role
+      Role: arn:aws:iam::<account_id>:role/<aws_lambda_execution_role>
       PackageType: Image
       Code:
-        ImageUri: <account_id>.dkr.ecr.us-east-1.amazonaws.com/aws-lambda-demo-ecr:latest
+        ImageUri: <account_id>.dkr.ecr.<aws_region>.amazonaws.com/<ecr_repository_name>:latest
       Timeout: 30
       MemorySize: 128
       TracingConfig:
         Mode: Active
       # VpcConfig:
       #   SecurityGroupIds:
-      #     - sg-0d1d60471d00b3c5e
+      #     - sg-<sg_id>
       #   SubnetIds:
-      #     - subnet-04564f21a448f7a97
-      #     - subnet-00553e385bc6a7f1c
+      #     - subnet-<subnet_id_1>
+      #     - subnet-<subnet_id_2>
   ScheduledRule:
     Type: AWS::Events::Rule
     DependsOn: LambdaFunction
     Properties:
-      Name: my-func-name-cloudwatch # optional
+      Name: <eventbridge_name> # optional
       Description: "ScheduledRule"
       ScheduleExpression: "cron(00 12 ? * MON-FRI *)"
       State: "ENABLED"
