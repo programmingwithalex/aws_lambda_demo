@@ -4,7 +4,7 @@ Resources:
   ECRRepository:
     Type: AWS::ECR::Repository
     Properties:
-      RepositoryName: my-repo-name-ecr
+      RepositoryName: <ecr_repository_name>
       RepositoryPolicyText:
         Version: "2012-10-17"
         Statement:
