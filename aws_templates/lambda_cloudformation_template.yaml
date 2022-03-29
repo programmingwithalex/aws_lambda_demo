@@ -4,7 +4,7 @@ Resources:
   LambdaFunction:
     Type: AWS::Lambda::Function
     Properties:
-      FunctionName: <lambda_name>  # optional
+      FunctionName: <lambda_name>
       Description: A starter AWS Lambda function.
       Role: arn:aws:iam::<account_id>:role/<aws_lambda_execution_role>
       PackageType: Image
@@ -24,7 +24,7 @@ Resources:
     Type: AWS::Events::Rule
     DependsOn: LambdaFunction
     Properties:
-      Name: <eventbridge_name> # optional
+      Name: <eventbridge_name>
       Description: "ScheduledRule"
       ScheduleExpression: "cron(00 12 ? * MON-FRI *)"
       State: "ENABLED"
