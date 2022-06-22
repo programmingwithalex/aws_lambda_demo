@@ -4,7 +4,7 @@ Copyright (c) 2021, [programmingwithalex](https://github.com/programmingwithalex
 
 ## Description
 
-This repo serves as a reference for the [YouTube playlist found here](https://youtube.com/playlist?list=PL0dOL8Z7pG3L4hi2SLJqojxshXNtsJQ_r).
+This repo serves as a reference for the [YouTube playlist found here](https://www.youtube.com/watch?v=gvfoZq258gA&list=PLbn3jWIXv_ibGQml3zlXi1TfmdcIl6Afy&index=1).
 
 This video will cover end-to-end how to:
 
